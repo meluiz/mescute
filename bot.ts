@@ -1,5 +1,7 @@
 import { logger } from '@poppinss/cliui'
+import botConfig from 'config/bot'
 import { IntentsBitField } from 'discord.js'
+import { Str } from 'melper'
 
 import { Client } from 'App/Client'
 
@@ -30,6 +32,12 @@ export const bot = new Client({
 async function Run() {
   logger.info('Bot is starting') // Log a message indicating that the bot is starting
   await bot.login(Env.DISCORD_TOKEN) // Log in with the Discord token from the environment variables
+
+  // Check if the bot user exists
+  if (bot.user) {
+    // Set the username of the bot user
+    await bot.user.setUsername(botConfig.name || 'Mescute')
+  }
 }
 
 Run().catch(logger.fatal) // Start the bot and handle any errors

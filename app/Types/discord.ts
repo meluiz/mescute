@@ -6,6 +6,10 @@ import type { Awaitable } from './global'
  */
 export interface BotConfig {
   /**
+   * The name of bot.
+   */
+  name?: string
+  /**
    * The ID of the bot.
    */
   botId?: string

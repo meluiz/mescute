@@ -7,6 +7,10 @@ import Env from 'Utils/Env'
  */
 const botConfig: BotConfig = {
   /**
+   * The name of bot.
+   */
+  name: 'Mescute',
+  /**
    * The ID of the bot.
    */
   botId: Env.DISCORD_ID,
