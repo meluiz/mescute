@@ -1,0 +1,27 @@
+{
+  "extends": ["prettier", "plugin:prettier/recommended", "plugin:@typescript-eslint/recommended"],
+  "plugins": ["prettier", "@typescript-eslint", "unused-imports"],
+  "rules": {
+    "indent": "off",
+    "camelcase": "off",
+    "import/no-unresolved": "warn",
+    "import/no-anonymous-default-export": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-use-before-define": ["off"],
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  }
+}
