@@ -1,7 +1,7 @@
+import { dirname, importx } from '@discordx/importer'
 import { logger } from '@poppinss/cliui'
 import botConfig from 'config/bot'
-import { IntentsBitField } from 'discord.js'
-import { Str } from 'melper'
+import { IntentsBitField, Interaction, Message } from 'discord.js'
 
 import { Client } from 'App/Client'
 
@@ -27,12 +27,35 @@ export const bot = new Client({
 })
 
 /**
+ * Initialize the bot when it is ready
+ */
+bot.once('ready', async function () {
+  await bot.initApplicationCommands()
+})
+
+/**
+ * Handle interactions created by users
+ * @param {Interaction} interaction - The user interaction
+ */
+bot.on('interactionCreate', (interaction: Interaction) => {
+  bot.executeInteraction(interaction)
+})
+
+/**
+ * Handle messages created by users
+ * @param {Message} message - The user message
+ */
+bot.on('messageCreate', (message: Message) => {
+  bot.executeCommand(message)
+})
+
+/**
  * Function to start the bot and log in with the Discord token
  */
 async function Run() {
-  logger.info('Bot is starting') // Log a message indicating that the bot is starting
-  await bot.login(Env.DISCORD_TOKEN) // Log in with the Discord token from the environment variables
+  await importx(`${dirname(import.meta.url)}/app/{Events,Commands}/**/*.ts`)
 
+  await bot.login(Env.DISCORD_TOKEN) // Log in with the Discord token from the environment variables
   // Check if the bot user exists
   if (bot.user) {
     // Set the username of the bot user
