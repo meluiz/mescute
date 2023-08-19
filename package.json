@@ -33,9 +33,11 @@
     "typescript": "latest"
   },
   "dependencies": {
+    "@discordx/importer": "^1.2.3",
     "@poppinss/cliui": "^3.0.5",
     "@t3-oss/env-nextjs": "^0.6.0",
     "discord.js": "^14.13.0",
+    "discordx": "^11.7.6",
     "melper": "^3.1.6",
     "picocolors": "^1.0.0",
     "zod": "^3.22.1"
