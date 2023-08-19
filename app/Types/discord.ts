@@ -1,4 +1,5 @@
-import type { ClientOptions as DiscordJSClientOptions, Message } from 'discord.js'
+import type { Message } from 'discord.js'
+import type { ClientOptions as DiscordJSClientOptions } from 'discordx'
 import type { Awaitable } from './global'
 
 /**
@@ -48,10 +49,6 @@ export interface CommandConfig {
  * Configuration options for the Discord client.
  */
 export interface ClientOptions extends DiscordJSClientOptions, BotConfig {
-  /**
-   * Whether to run the client in silent mode.
-   */
-  silent?: boolean
   /**
    * Configuration options for commands.
    */
