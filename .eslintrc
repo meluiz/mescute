@@ -4,7 +4,7 @@
   "rules": {
     "indent": "off",
     "camelcase": "off",
-    "import/no-unresolved": "warn",
+    "import/no-unresolved": "off",
     "import/no-anonymous-default-export": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-unused-vars": "off",
