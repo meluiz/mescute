@@ -16,6 +16,7 @@ export const bot = new Client({
     IntentsBitField.Flags.GuildMembers,
     IntentsBitField.Flags.GuildMessages,
     IntentsBitField.Flags.GuildVoiceStates,
+    IntentsBitField.Flags.GuildMessageTyping,
     IntentsBitField.Flags.GuildMessageReactions,
     IntentsBitField.Flags.MessageContent,
   ],
@@ -63,4 +64,4 @@ async function Run() {
   }
 }
 
-Run().catch(logger.fatal) // Start the bot and handle any errors
+Run().catch(console.error) // Start the bot and handle any errors
