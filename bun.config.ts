@@ -1,4 +1,4 @@
-export default await Bun.build({
+const result = await Bun.build({
   minify: true,
   target: 'bun',
   format: 'esm',
@@ -6,3 +6,11 @@ export default await Bun.build({
   outdir: './build',
   entrypoints: ['./bot.ts'],
 })
+
+if (!result.success) {
+  console.error('Build failed')
+
+  for (const message of result.logs) {
+    console.error(message)
+  }
+}
