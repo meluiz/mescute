@@ -1,5 +1,4 @@
 import { dirname, importx } from '@discordx/importer'
-import { logger } from '@poppinss/cliui'
 import botConfig from 'config/bot'
 import { IntentsBitField, Interaction, Message } from 'discord.js'
 
@@ -10,7 +9,7 @@ import Env from 'Utils/Env'
 /**
  * The bot instance that represents the Discord bot
  */
-export const bot = new Client({
+export const Bot = new Client({
   intents: [
     IntentsBitField.Flags.Guilds,
     IntentsBitField.Flags.GuildMembers,
@@ -25,29 +24,34 @@ export const bot = new Client({
     prefix: '.', // The prefix used for commands
     splitter: ' ', // The character used to split commands and arguments
   },
+  lavalink: {
+    host: Env.LAVALINK_HOST ?? 'localhost',
+    port: Number(Env.LAVALINK_PORT) ?? 2333,
+    password: Env.LAVALINK_PASWORD ?? 'password',
+  },
 })
 
 /**
  * Initialize the bot when it is ready
  */
-bot.once('ready', async function () {
-  await bot.initApplicationCommands()
+Bot.once('ready', async function () {
+  await Bot.initApplicationCommands()
 })
 
 /**
  * Handle interactions created by users
  * @param {Interaction} interaction - The user interaction
  */
-bot.on('interactionCreate', (interaction: Interaction) => {
-  bot.executeInteraction(interaction)
+Bot.on('interactionCreate', (interaction: Interaction) => {
+  Bot.executeInteraction(interaction)
 })
 
 /**
  * Handle messages created by users
  * @param {Message} message - The user message
  */
-bot.on('messageCreate', (message: Message) => {
-  bot.executeCommand(message)
+Bot.on('messageCreate', (message: Message) => {
+  Bot.executeCommand(message)
 })
 
 /**
@@ -56,11 +60,11 @@ bot.on('messageCreate', (message: Message) => {
 async function Run() {
   await importx(`${dirname(import.meta.url)}/app/{Events,Commands}/**/*.ts`)
 
-  await bot.login(Env.DISCORD_TOKEN) // Log in with the Discord token from the environment variables
+  await Bot.login(Env.DISCORD_TOKEN) // Log in with the Discord token from the environment variables
   // Check if the bot user exists
-  if (bot.user) {
+  if (Bot.user) {
     // Set the username of the bot user
-    await bot.user.setUsername(botConfig.name || 'Mescute')
+    await Bot.user.setUsername(botConfig.name || 'Mescute')
   }
 }
 
