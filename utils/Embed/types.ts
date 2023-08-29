@@ -20,5 +20,6 @@ export enum EmbedErrorType {
   Connection = 'Connection Error',
   Permission = 'Permission Error',
   Player = 'Player Error',
+  Request = 'Request Error',
   Unknown = 'Unknown Error',
 }
